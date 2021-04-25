@@ -17,7 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void init() async {
-    counter = await getCounter();
+    int c = await getCounter();
+    setState(() {
+      counter = c;
+    });
   }
 
   @override
@@ -29,59 +32,58 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text("SharedPreference"),
           centerTitle: true,
         ),
-        body: Center(
-          child: Container(
-            alignment: Alignment.center,
-            child: Column(
-              children: [
-                Text(
-                  '$counter',
-                  style: TextStyle(fontSize: 40),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          onPressed: () => {
-                            setState(() {
-                              counter--;
-                              saveCounter(counter);
-                            })
-                          },
-                          child: Text(
-                            '-',
-                            style: TextStyle(fontSize: 36),
-                          ),
-                          //other properties
+        body: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                '$counter',
+                style: TextStyle(fontSize: 40),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RaisedButton(
+                        onPressed: () => {
+                          setState(() {
+                            counter--;
+                            saveCounter(counter);
+                          })
+                        },
+                        child: Text(
+                          '-',
+                          style: TextStyle(fontSize: 36),
                         ),
+                        //other properties
                       ),
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          onPressed: () => {
-                            setState(() {
-                              counter++;
-                              saveCounter(counter);
-                            })
-                          },
-                          child: Text(
-                            '+',
-                            style: TextStyle(fontSize: 36),
-                          ),
-                          //other properties
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RaisedButton(
+                        onPressed: () => {
+                          setState(() {
+                            counter++;
+                            saveCounter(counter);
+                          })
+                        },
+                        child: Text(
+                          '+',
+                          style: TextStyle(fontSize: 36),
                         ),
+                        //other properties
                       ),
-                    )
-                  ],
-                )
-              ],
-            ),
+                    ),
+                  )
+                ],
+              )
+            ],
           ),
         ),
       ),
